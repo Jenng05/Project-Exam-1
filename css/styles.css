@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+}
+
+header {
+  background-color: #1CA7A6;
+  color: white;
+  padding: 1rem;
+}
+
+nav a {
+  margin-right: 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+main {
+  padding: 1.5rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #ddd;
+}
+
+header {
+  height: 74px;
+}
+
+@media (min-width: 768px) {
+  header {
+    height: 76px;
+  }
+}
+
+@media (min-width: 1024px) {
+  header {
+    height: 80px;
+  }
+}
