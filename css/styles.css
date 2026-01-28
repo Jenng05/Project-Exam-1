@@ -16,3 +16,7 @@ header {
   }
 } 
   **/
+
+.post-grid {
+  display: grid;
+}
