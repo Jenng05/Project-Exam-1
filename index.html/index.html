@@ -15,118 +15,89 @@
   </head>
 
   <body>
-    <header>
-      <h1>Us Bloggers</h1>
-      <nav class="main-nav">
-        <a href="#">Home</a>
-        <a href="#">Login</a>
-        <a href="#">Register</a>
-        <a href="#">Create Post</a>
-      </nav>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="./index.html" aria-label="Go to homepage"
+          >Us Bloggers</a
+        >
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#">Home</a>
+          <a href="#">Login</a>
+          <a href="#">Register</a>
+          <a href="#">Create Post</a>
+        </nav>
+      </div>
     </header>
 
-    <main>
-      <h2>Blog title name</h2>
+    <main class="page">
+      <h2 class="page-title">Blog title name</h2>
 
-      <section class="carousel-section" id="carousel">
-        <div class="carousel-card">
+      <!-- Carousel -->
+      <section class="carousel" aria-label="Featured blog posts">
+        <div class="carousel-track" id="carousel-track">
           <h3>Short previewed text</h3>
           <img src="https://placehold.co/600x400" alt="Blog post image" />
-          <button>Read More</button>
         </div>
 
-        <div class="carousel-card">
-          <h3>Short previewed text</h3>
-          <img src="https://placehold.co/600x400" alt="Blog post image" />
-          <button>Read More</button>
-        </div>
+        <div class="carousel-controls">
+          <button
+            type="button"
+            class="carousel-btn"
+            id="carousel-prev"
+            aria-label="Previous post"
+          >
+            ‹
+          </button>
 
-        <div class="carousel-card">
-          <h3>Short previewed text</h3>
-          <img src="https://placehold.co/600x400" alt="Blog post image" />
-          <button>Read More</button>
+          <div
+            class="carousel-dots"
+            id="carousel-dots"
+            aria-label="Carousel pagination"
+          >
+            <!-- JS will inject dots here -->
+          </div>
+
+          <button
+            type="button"
+            class="carousel-btn"
+            id="carousel-next"
+            aria-label="Read More"
+          >
+            ›
+          </button>
         </div>
       </section>
 
-      <section class="post-grid" id="post-feed">
-        <h3>Latest posts</h3>
-        <div class="blog-card">
-          <img src="#" alt="Blog Image 1" />
-          <h4>Blog Post Title 1</h4>
-        </div>
-
-        <div class="blog-card">
-          <img src="#" alt="Blog Image 2" />
-          <h4>Blog Post Title 2</h4>
-        </div>
-
-        <div class="blog-card">
-          <img src="#" alt="Blog Image 3" />
-          <h4>Blog Post Title 3</h4>
-        </div>
-
-        <div class="blog-card">
-          <img src="#" alt="Blog Image 4" />
-          <h4>Blog Post Title 4</h4>
-        </div>
-
-        <div class="blog-card">
-          <img src="#" alt="Blog Image 5" />
-          <h4>Blog Post Title 5</h4>
-        </div>
-        <div class="blog-card">
-          <img src="#" alt="Blog Image 6" />
-          <h4>Blog Post Title 6</h4>
-        </div>
-
-        <div class="blog-card">
-          <img src="#" alt="Blog Image 7" />
-          <h4>Blog Post Title 7</h4>
-        </div>
-
-        <div class="blog-card">
-          <img src="#" alt="Blog Image 8" />
-          <h4>Blog Post Title 8</h4>
-        </div>
-
-        <div class="blog-card">
-          <img src="#" alt="Blog Image 9" />
-          <h4>Blog Post Title 9</h4>
-        </div>
-
-        <div class="blog-card">
-          <img src="#" alt="Blog Image 10" />
-          <h4>Blog Post Title 10</h4>
-        </div>
-
-        <div class="blog-card">
-          <img src="#" alt="Blog Image 11" />
-          <h4>Blog Post Title 11</h4>
-        </div>
-
-        <div class="blog-card">
-          <img src="#" alt="Blog Image 12" />
-          <h4>Blog Post Title 12</h4>
+      <!-- Posts grid -->
+      <section class="post-grid" aria-label="Post feed">
+        <div id="post-feed" class="post-grid-inner">
+          <!-- JS will inject 12 posts here -->
         </div>
       </section>
     </main>
 
-    <footer>
-      <h4>Us Bloggers</h4>
-      <div>
-        <p>Pages</p>
-        <a href="#">Blog</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </div>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-brand">Us Bloggers</p>
 
-      <div>
-        <p>Account</p>
-        <a href="#">Login</a>
-        <a href="#">Register</a>
-      </div>
+        <div class="footer-links">
+          <div>
+            <p class="footer-heading">Pages</p>
+            <a href="./index.html">Blog</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+          </div>
 
-      <p>© 2026 Us bloggers</p>
+          <div>
+            <p class="footer-heading">Account</p>
+            <a href="./account/login.html">Login</a>
+            <a href="./account/register.html">Register</a>
+          </div>
+        </div>
+
+        <p class="footer-copy">© 2026 Us Bloggers</p>
+      </div>
     </footer>
     <script src="/js/index.js"></script>
   </body>
