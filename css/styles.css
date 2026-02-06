@@ -1,7 +1,37 @@
-
-header {
-  height: 74px;
+.site-header {
+  background: #fff6e5;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: serif;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: #771515;
+}
+
+.menu-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Skjul menyen på mobil */
+.main-nav {
+  display: none;
+}
+
 
 .carousel {
   margin-top: 1.5rem;
@@ -161,6 +191,52 @@ header {
 .blog-card h4 {
   margin-top: 0.5rem;
   font-size: 1rem;
+}
+
+/*----------FOOTER---------*/
+
+.site-footer {
+  background: #fff6e5;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  margin-top: 3rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+.footer-heading {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: #333;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+/*MEDIA QUERIES*/
+
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .main-nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 0.95rem;
+  }
 }
 
 
