@@ -36,11 +36,19 @@
       <!-- Carousel -->
       <section class="carousel" aria-label="Featured blog posts">
         <div class="carousel-track" id="carousel-track">
-          <h3>Short previewed text</h3>
-          <img src="https://placehold.co/600x400" alt="Blog post image" />
+          <div class="carousel-slide">
+            <img src="https://placehold.co/600x400" alt="Blog post image" />
+            <div class="carousel-content">
+              <div class="carousel-panel">
+                <h3>Featured Blog Post</h3>
+                <p>Short previewed text</p>
+                <a class="carousel-link" href="#">Read More</a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="carousel-controls">
+        <div class="carousel-control">
           <button
             type="button"
             class="carousel-btn"
@@ -56,6 +64,12 @@
             aria-label="Carousel pagination"
           >
             <!-- JS will inject dots here -->
+            <button
+              class="carousel-dot is-active"
+              aria-label="Slide 1"
+            ></button>
+            <button class="carousel-dot" aria-label="Slide 2"></button>
+            <button class="carousel-dot" aria-label="Slide 3"></button>
           </div>
 
           <button
@@ -71,7 +85,7 @@
 
       <!-- Posts grid -->
       <section class="post-grid" aria-label="Post feed">
-        <div id="post-feed" class="post-grid-inner">
+        <div id="post-feed">
           <!-- JS will inject 12 posts here -->
         </div>
       </section>

@@ -1,28 +1,30 @@
-const posts = [
-  {
-    title: "Why I started blogging",
-    image: "https://via.placeholder.com/400x250",
-  },
-  {
-    title: "My journey into frontend",
-    image: "https://via.placeholder.com/400x250",
-  },
-  {
-    title: "Design tips for beginners",
-    image: "https://via.placeholder.com/400x250",
-  },
-];
+const USERNAME = "jenng05";
+const API_URL = `https://v2.api.noroff.dev/blog/posts/${USERNAME}`;
 
-const postFeed = document.getElementById("post-feed");
+function renderPostGrid(posts) {
+  const postFeed = document.getElementById("post-feed");
+  if (!postFeed) return;
 
-posts.forEach(post => {
-  const card = document.createElement("div");
-  card.classList.add("blog-card");
+  postFeed.innerHTML = ""; // tømmer
 
-  card.innerHTML = `
-    <img src="${post.image}" alt="${post.title}">
-    <h4>${post.title}</h4>
-  `;
+  posts.slice(0, 12).forEach((post) => {
+    const title = post.title || "Untitled post";
+    const image = post.image || "https://placehold.co/600x400";
 
-  postFeed.appendChild(card);
-});
+    const card = document.createElement("article");
+    card.className = "blog-card";
+    card.innerHTML = `
+      <img src="${image}" alt="${title}">
+      <h4>${title}</h4>
+    `;
+
+    postFeed.appendChild(card);
+  });
+}
+
+const dummyPosts = Array.from({ length: 12 }, (_, i) => ({
+  title: `Blog Post ${i + 1}`,
+  image: "https://placehold.co/600x400",
+}));
+
+renderPostGrid(dummyPosts);
