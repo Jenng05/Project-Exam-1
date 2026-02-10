@@ -40,48 +40,39 @@
         <div class="carousel-track" id="carousel-track">
           <div class="carousel-slide">
             <img src="https://placehold.co/600x400" alt="Blog post image" />
+
             <div class="carousel-content">
               <div class="carousel-panel">
                 <h3>Featured Blog Post</h3>
                 <p>Short previewed text</p>
-                <a class="carousel-link" href="#">Read More</a>
+                <a class="btn" href="#">Read more</a>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div class="carousel-control">
-          <button
-            type="button"
-            class="carousel-btn"
-            id="carousel-prev"
-            aria-label="Previous post"
-          >
-            ‹
-          </button>
-
-          <div
-            class="carousel-dots"
-            id="carousel-dots"
-            aria-label="Carousel pagination"
-          >
-            <!-- JS will inject dots here -->
             <button
-              class="carousel-dot is-active"
-              aria-label="Slide 1"
-            ></button>
-            <button class="carousel-dot" aria-label="Slide 2"></button>
-            <button class="carousel-dot" aria-label="Slide 3"></button>
-          </div>
+              type="button"
+              class="carousel-btn carousel-btn--prev"
+              aria-label="Previous post"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              class="carousel-btn carousel-btn--next"
+              aria-label="Next post"
+            >
+              ›
+            </button>
 
-          <button
-            type="button"
-            class="carousel-btn"
-            id="carousel-next"
-            aria-label="Read More"
-          >
-            ›
-          </button>
+            <div class="carousel-dots" aria-label="Carousel pagination">
+              <button
+                class="carousel-dot is-active"
+                aria-label="Slide 1"
+              ></button>
+              <button class="carousel-dot" aria-label="Slide 2"></button>
+              <button class="carousel-dot" aria-label="Slide 3"></button>
+            </div>
+          </div>
         </div>
       </section>
 
