@@ -3,42 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Register | Us Bloggers</title>
-    <meta
-      name="description"
-      content="Create an account to manage blog posts and engage with the Us Bloggers community."
-    />
-
-    <!-- CSS links-->
-    <link rel="stylesheet" href="/css/styles.css" />
-  </head>
-
-  <body>
-    <header class="site-header">
-      <div class="header-inner">
-        <a class="logo" href="./index.html" aria-label="Logo - Go to homepage"
-          >Us Bloggers</a
-        >
-
-        <button class="menu-toggle" aria-label="Open menu">☰</button>
-
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="#">Blog</a>
-          <a href="#">Login</a>
-          <a href="#">Register</a>
-          <a href="#">Create Post</a>
-        </nav>
-      </div>
-    </header>
-
-    <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login | Us Bloggers</title>
-    <meta name="description" content="Log in to manage blog posts." />
+    <meta name="description" content="Create an account to manage blog posts and engage with the Us Bloggers community." />
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
 
@@ -50,7 +16,7 @@
         <button class="menu-toggle" type="button" aria-label="Open menu">☰</button>
 
         <nav class="main-nav" aria-label="Main navigation">
-          <a href="../index.html">Home</a>
+          <a href="../index.html">Blog</a>
           <a href="./login.html" aria-current="page">Login</a>
           <a href="./register.html">Register</a>
           <a href="../post/create.html">Create Post</a>
@@ -62,9 +28,9 @@
       <a class="back-link" href="../index.html">← Back to blog</a>
 
       <section class="card">
-        <h1 class="page-title">Login</h1>
+        <h1 class="page-title">Create Account</h1>
 
-        <form class="form" id="login-form" novalidate>
+        <form class="form" id="register-form" novalidate>
           <label class="field">
             <span class="label">Email</span>
             <input class="input" type="email" name="email" placeholder="example@email.com..." required />
@@ -75,11 +41,16 @@
             <input class="input" type="password" name="password" placeholder="Enter your password..." required />
           </label>
 
-          <button class="btn" type="submit">Log in</button>
+          <label class="field">
+            <span class="label">Confirm Password</span>
+            <input class="input" type="password" name="confirm-password" placeholder="Confirm your password..." required />
+          </label>
+
+          <button class="btn" type="submit">Register</button>
 
           <p class="form-note">
-            Don’t have an account?
-            <a class="link" href="./register.html">Register here</a>
+            Already have an account?
+            <a class="link" href="./login.html">Login here</a>
           </p>
         </form>
       </section>
