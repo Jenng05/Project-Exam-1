@@ -31,44 +31,43 @@
       <h1 class="page-heading">Edit post</h1>
 
       <section class="form-card">
-        <form id="edit-post-form" class="form" novalidate>
-          <label class="field">
-            <span class="field-label">Title</span>
+        <form class="form" novalidate>
+          <div class="field">
+            <label class="label" for="title">Title</label>
             <input
               class="input"
+              id="title"
               name="title"
               type="text"
               placeholder="Write a title..."
-              required
             />
-          </label>
+          </div>
 
-          <label class="field">
-            <span class="field-label">Body</span>
+          <div class="field">
+            <label class="label" for="body">Body</label>
             <textarea
               class="textarea"
+              id="body"
               name="body"
               rows="7"
               placeholder="Write a text..."
-              required
             ></textarea>
-          </label>
+          </div>
 
-          <label class="field">
-            <span class="field-label">Image URL</span>
+          <div class="field">
+            <label class="label" for="image">Image URL</label>
             <input
               class="input"
+              id="image"
               name="image"
               type="url"
               placeholder="Paste an image..."
             />
-          </label>
+          </div>
 
           <div class="form-actions">
             <button class="btn" type="submit">Update post</button>
-            <button class="btn btn-danger" type="button" id="delete-post">
-              Delete post
-            </button>
+            <button class="btn btn-danger" type="button">Delete post</button>
           </div>
         </form>
       </section>

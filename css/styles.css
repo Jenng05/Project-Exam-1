@@ -253,19 +253,24 @@ h1, h2, h3, h4{
 }
 
 /*========FORM========*/
-.form {
-  display: grid;
-  gap: 0.9rem;
+
+/* Layout wrapper for pages */
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
-.field {
-  display: grid;
-  gap: 0.4rem;
+.field{
+display: grid;
+gap: 1rem;
 }
 
 .label {
   font-size: 0.95rem;
   color: var(--color-muted);
+  margin-top: 2rem;
+  margin-bottom: -0.75rem;
 }
 
 .input {
@@ -278,11 +283,6 @@ h1, h2, h3, h4{
   background: #fff;
 }
 
-.input:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(119,21,21,0.12);
-}
-
 .form-note {
   margin: 0.25rem 0 0;
   font-size: 0.9rem;
@@ -290,11 +290,64 @@ h1, h2, h3, h4{
   text-align: center;
 }
 
+/* Back link */
+.back-link {
+  display: inline-block;
+  margin: 0.5rem 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  text-decoration: none;
+}
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Card wrapper around form */
+.form-card {
+  background: #fff;
+  border: 5px solid #FFF8E2;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.page-heading {
+  margin: 0.5rem 0 1rem;
+}
+
+/* Textarea uses same visual style as .input */
+.textarea {
+  width: 100%;
+  padding: 0.65rem 0.25rem;
+  border: 1px solid rgba(0,0,0,0.18);
+  border-radius: 6px;
+  outline: none;
+  font-size: 1rem;
+  background: #fff;
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* Actions row (Edit page: Update + Delete) */
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* secondary/danger-ish” .btn */
+.btn-danger {
+  background: #eee;
+  border-color: rgba(0,0,0,0.25);
+  color: #222;
+}
+
 .link {
   color: var(--color-primary);
   text-decoration: none;
 }
 .link:hover { text-decoration: underline; }
+
 
 /*=============FOOTER============*/
 
