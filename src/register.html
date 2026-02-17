@@ -4,49 +4,96 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register | Us Bloggers</title>
-    <meta name="description" content="Create an account to manage blog posts and engage with the Us Bloggers community." />
+    <meta
+      name="description"
+      content="Create an account to manage blog posts and engage with the Us Bloggers community."
+    />
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
 
   <body>
     <header class="site-header">
       <div class="header-inner">
-        <a class="logo" href="./index.html" aria-label="Go to homepage">Us Bloggers</a>
+        <a class="logo" href="./index.html" aria-label="Go to homepage"
+          >Us Bloggers</a
+        >
 
-        <button class="menu-toggle" type="button" aria-label="Open menu">☰</button>
+        <button class="menu-toggle" type="button" aria-label="Open menu">
+          ☰
+        </button>
 
         <nav class="main-nav" aria-label="Main navigation">
           <a href="./index.html">Blog</a>
-          <a href="./login.html" aria-current="page">Login</a>
-          <a href="./register.html">Register</a>
-          <a href="./post/create.html">Create Post</a>
+          <a href="./login.html">Login</a>
+          <a href="./register.html" aria-current="page">Register</a>
+          <a href="./create.html">Create Post</a>
         </nav>
       </div>
     </header>
 
     <main class="page">
-      <a class="back-link" href="../index.html">← Back to blog</a>
+      <a class="back-link" href="./index.html">← Back to blog</a>
 
       <section class="card">
         <h1 class="page-title">Register account</h1>
 
         <form class="form" id="register-form" novalidate>
-          <label class="field">
+          <label class="field" for="register-name">
+            <span class="label">Profile name</span>
+            <input
+              class="input"
+              id="register-name"
+              type="text"
+              name="name"
+              placeholder="jenng05"
+              required
+            />
+          </label>
+
+          <label class="field" for="register-email">
             <span class="label">Email</span>
-            <input class="input" type="email" name="email" placeholder="example@email.com..." required />
+            <input
+              class="input"
+              id="register-email"
+              type="email"
+              name="email"
+              placeholder="example@email.com..."
+              required
+            />
           </label>
 
-          <label class="field">
+          <label class="field" for="register-password">
             <span class="label">Password</span>
-            <input class="input" type="password" name="password" placeholder="Enter your password..." required />
+            <input
+              class="input"
+              id="register-password"
+              type="password"
+              name="password"
+              placeholder="Enter your password..."
+              required
+            />
           </label>
 
-          <label class="field">
+          <label class="field" for="register-confirm">
             <span class="label">Confirm Password</span>
-            <input class="input" type="password" name="confirm-password" placeholder="Confirm your password..." required />
+            <input
+              class="input"
+              id="register-confirm"
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm your password..."
+              required
+            />
           </label>
 
           <button class="btn" type="submit">Register</button>
+
+          <p
+            class="form-note"
+            id="register-message"
+            role="status"
+            aria-live="polite"
+          ></p>
 
           <p class="form-note">
             Already have an account?
@@ -79,11 +126,6 @@
       </div>
     </footer>
 
-    <script src="../js/register.js"></script>
-  </body>
-</html>
-
-    </footer>
-    <script src="/js/index.js"></script>
+    <script type="module" src="../js/api/register.js"></script>
   </body>
 </html>
