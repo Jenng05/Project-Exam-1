@@ -24,10 +24,10 @@
         <button class="menu-toggle" aria-label="Open menu">☰</button>
 
         <nav class="main-nav" aria-label="Main navigation">
-          <a href="#">Blog</a>
-          <a href="#">Login</a>
-          <a href="#">Register</a>
-          <a href="#">Create Post</a>
+          <a href="./index.html">Blog</a>
+          <a href="./login.html">Login</a>
+          <a href="./register.html">Register</a>
+          <a href="./post/create.html">Create Post</a>
         </nav>
       </div>
     </header>
@@ -45,7 +45,12 @@
               <div class="carousel-panel">
                 <h3>Featured Blog Post</h3>
                 <p>Short previewed text</p>
-                <a class="btn" href="#">Read more</a>
+                <a
+                  class="btn"
+                  id="carousel-readmore"
+                  href="./specific.html?id=1"
+                  >Read more</a
+                >
               </div>
             </div>
 
@@ -64,14 +69,11 @@
               ›
             </button>
 
-            <div class="carousel-dots" aria-label="Carousel pagination">
-              <button
-                class="carousel-dot is-active"
-                aria-label="Slide 1"
-              ></button>
-              <button class="carousel-dot" aria-label="Slide 2"></button>
-              <button class="carousel-dot" aria-label="Slide 3"></button>
-            </div>
+            <div
+              class="carousel-dots"
+              id="carousel-dots"
+              aria-label="Carousel pagination"
+            ></div>
           </div>
         </div>
       </section>

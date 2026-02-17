@@ -1,20 +1,42 @@
-const API_BASE = "https://api.noroff.dev/api/v1/blog/posts/USERNAME";
+// post.js (specific page) — dummy now, easy to swap to API later
 
-export async function getPosts() {
-  const response = await fetch(API_BASE);
-  return response.json();
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+console.log("Post ID from URL:", id);
+
+const titleEl = document.getElementById("post-title");
+const metaEl = document.getElementById("post-meta");
+const imgEl = document.getElementById("post-image");
+const contentEl = document.getElementById("post-content");
+
+if (titleEl) {
+  titleEl.textContent = id ? `Post #${id}` : "No post id provided 😭";
 }
-document.getElementById("create-post-form")?.addEventListener("submit", (e) => {
-  e.preventDefault();
-  alert("Create post (API kommer senere)");
-});
+if (metaEl) {
+  metaEl.textContent = "Author name • Date";
+}
+if (imgEl) {
+  imgEl.src = "https://placehold.co/900x600";
+  imgEl.alt = "Blog post image";
+}
+if (contentEl) {
+  contentEl.innerHTML = `
+    <p>This is dummy content for post <strong>#${id ?? "?"}</strong>.</p>
+    <p>Later you’ll fetch the real content from the API using the ID.</p>
+  `;
+}
 
-document.getElementById("edit-post-form")?.addEventListener("submit", (e) => {
-  e.preventDefault();
-  alert("Update post (API kommer senere)");
-});
-
-document.getElementById("delete-post")?.addEventListener("click", () => {
-  const ok = confirm("Delete this post?");
-  if (ok) alert("Delete post (API kommer senere)");
-});
+// Share button
+const shareBtn = document.getElementById("share-btn");
+if (shareBtn) {
+  shareBtn.addEventListener("click", async () => {
+    const url = window.location.href;
+    try {
+      await navigator.clipboard.writeText(url);
+      alert("Link copied ✅");
+    } catch {
+      prompt("Copy this link:", url);
+    }
+  });
+}
