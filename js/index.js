@@ -1,5 +1,4 @@
 // dummy now,swap to API later
-
 const dummyPosts = Array.from({ length: 12 }, (_, i) => ({
   id: i + 1,
   title: `Blog Post ${i + 1}`,

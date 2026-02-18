@@ -1,42 +1,45 @@
-// post.js (specific page) — dummy now, easy to swap to API later
-
+// Hent id fra URL
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 console.log("Post ID from URL:", id);
 
-const titleEl = document.getElementById("post-title");
-const metaEl = document.getElementById("post-meta");
-const imgEl = document.getElementById("post-image");
-const contentEl = document.getElementById("post-content");
+// FAKE POSTS (midlertidig)
+const dummyPosts = [
+  {
+    id: "1",
+    title: "My first blog post",
+    author: "Us Bloggers",
+    date: "2026-02-01",
+    image: "https://placehold.co/900x600",
+    content: "This is the content of post 1."
+  },
+  {
+    id: "2",
+    title: "Learning frontend",
+    author: "Us Bloggers",
+    date: "2026-02-02",
+    image: "https://placehold.co/900x600",
+    content: "This is the content of post 2."
+  },
+  {
+    id: "3",
+    title: "Design tips",
+    author: "Us Bloggers",
+    date: "2026-02-03",
+    image: "https://placehold.co/900x600",
+    content: "This is the content of post 3."
+  }
+];
 
-if (titleEl) {
-  titleEl.textContent = id ? `Post #${id}` : "No post id provided 😭";
-}
-if (metaEl) {
-  metaEl.textContent = "Author name • Date";
-}
-if (imgEl) {
-  imgEl.src = "https://placehold.co/900x600";
-  imgEl.alt = "Blog post image";
-}
-if (contentEl) {
-  contentEl.innerHTML = `
-    <p>This is dummy content for post <strong>#${id ?? "?"}</strong>.</p>
-    <p>Later you’ll fetch the real content from the API using the ID.</p>
-  `;
-}
+// Finn riktig post
+const post = dummyPosts.find(p => p.id === id);
 
-// Share button
-const shareBtn = document.getElementById("share-btn");
-if (shareBtn) {
-  shareBtn.addEventListener("click", async () => {
-    const url = window.location.href;
-    try {
-      await navigator.clipboard.writeText(url);
-      alert("Link copied ✅");
-    } catch {
-      prompt("Copy this link:", url);
-    }
-  });
+// Hvis post finnes → render
+if (post) {
+  document.getElementById("post-title").textContent = post.title;
+  document.getElementById("post-meta").textContent =
+    `${post.author} · ${post.date}`;
+  document.getElementById("post-image").src = post.image;
+  document.getElementById("post-content").textContent = post.content;
 }
