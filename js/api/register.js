@@ -31,7 +31,7 @@ form?.addEventListener("submit", (e) => {
     return;
   }
 
-  // ✅ MIDLERIDIG REGISTER (fake)
+  //  MIDLERIDIG REGISTER (fake)
   // Senere: kall API /auth/register
   const user = { email, name: email.split("@")[0] };
 
