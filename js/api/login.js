@@ -20,7 +20,6 @@ form?.addEventListener("submit", (e) => {
     return;
   }
 
-  // MIDLERIDIG LOGIN (fake)
   // bytte denne delen til API senere
   const user = { email, name: email.split("@")[0] };
 

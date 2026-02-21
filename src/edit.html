@@ -32,7 +32,7 @@
       <h1 class="page-heading">Edit post</h1>
 
       <section class="form-card">
-        <form class="form" novalidate>
+        <form class="form" id="edit-post-form" novalidate>
           <div class="field">
             <label class="label" for="title">Title</label>
             <input
@@ -97,6 +97,7 @@
     </footer>
 
     <script src="../js/post.js"></script>
+    <script type="module" src="../js/api/edit.js"></script>
     <script type="module">
       import { initNavGuard, requireAuth } from "../js/api/guard.js";
       initNavGuard();

@@ -1,60 +1,76 @@
-// Hent id fra URL
+import { getAuth } from "../api/auth.js";
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
-
 console.log("Post ID from URL:", id);
 
-const stored = localStorage.getItem("usbloggers_posts");
-const posts = stored ? JSON.parse(stored) : [];
-
-const post = posts.find(p => p.id === id);
-
-if (!post) {
-  console.log("No post found for ID:", id);
-  const titleEl = document.getElementById("post-title");
-  if (titleEl) titleEl.textContent = "Post not found";
-} else {
-  console.log("Loaded post", post);
-
-  document.getElementById("post-title").textContent = post.title;
-  document.getElementById("post-meta").textContent = 
-  `${post.author} · ${new Date(post.date).toLocaleDateString()}`;
-
-  document.getElementById("post-image").src = post.image || "https://placehold.co/900x600";
-
+function getStoredPosts() {
+  const raw = localStorage.getItem("usbloggers_posts");
+  return raw ? JSON.parse(raw) : [];
 }
 
-const createForm = document.getElementById("create-post-form");
+const dummyPosts = [
+  {
+    id: "1",
+    title: "My first blog post",
+    author: "Us Bloggers",
+    date: "2026-02-01",
+    image: "https://placehold.co/900x600",
+    body: "This is the content of post 1.",
+  },
+  {
+    id: "2",
+    title: "Learning frontend",
+    author: "Us Bloggers",
+    date: "2026-02-02",
+    image: "https://placehold.co/900x600",
+    body: "This is the content of post 2.",
+  },
+  {
+    id: "3",
+    title: "Design tips",
+    author: "Us Bloggers",
+    date: "2026-02-03",
+    image: "https://placehold.co/900x600",
+    body: "This is the content of post 3.",
+  },
+];
 
-createForm?.addEventListener("submit", (e) => {
-  e.preventDefault();
+const stored = getStoredPosts();
+const post =
+  stored.find((p) => String(p.id) === String(id)) ||
+  dummyPosts.find((p) => String(p.id) === String(id));
 
-  const title = document.getElementById("title")?.value.trim();
-  const body = document.getElementById("body")?.value.trim();
-  const image = document.getElementById("image")?.value.trim();
+if (!post) {
+  document.getElementById("post-title").textContent = "Post not found";
+} else {
+  document.getElementById("post-title").textContent = post.title || "Untitled";
+  document.getElementById("post-meta").textContent = `${post.author || "Us Bloggers"} · ${post.date || ""}`;
+  document.getElementById("post-image").src = post.image || "https://placehold.co/900x600";
 
-  if (!title || !body) {
-    alert("Title and body are required.");
-    return;
-  }
+  const contentEl = document.getElementById("post-content");
+  contentEl.textContent = post.body || post.content || "" ;
+}
 
-  const stored = localStorage.getItem("usbloggers_posts");
-  const posts = stored ? JSON.parse(stored) : [];
+// Vis edit-link kun hvis logget inn
+const auth = getAuth();
+const editLink = document.getElementById("edit-link");
 
-  const newPost = {
-    id:crypto.randomUUID(),
-    title,
-    body,
-    image: image || "https://placehold.co/900x600",
-    author: "You",
-    date: new Date().toISOString()
-  };
+if (auth && editLink && id) {
+  editLink.hidden = false;
+  editLink.href = `./edit.html?id=${id}`;
+}
 
-  posts.unshift(newPost);
-
-  localStorage.setItem("usbloggers_posts", JSON.stringify(posts));
-
-  console.log("New post created:", newPost);
-
- window.location.href = `./specific.html?id=${newPost.id}`;
-});
+// 7) Share button
+const shareBtn = document.getElementById("share-btn");
+if (shareBtn) {
+  shareBtn.addEventListener("click", async () => {
+    const url = window.location.href;
+    try {
+      await navigator.clipboard.writeText(url);
+      alert("Link copied ✅");
+    } catch {
+      prompt("Copy this link:", url);
+    }
+  });
+}

@@ -22,7 +22,7 @@ export function initNavGuard() {
     if (logoutLink) logoutLink.style.display = "none";
   }
 
-  // Logout klikker
+  // Logout klikk
   if (logoutLink) {
     logoutLink.addEventListener("click", (e) => {
       e.preventDefault();
@@ -31,8 +31,6 @@ export function initNavGuard() {
     });
   }
 }
-
-import { isLoggedIn } from "./auth.js";
 
 export function requireAuth() {
     if (!isLoggedIn()) {
