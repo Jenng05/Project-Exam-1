@@ -106,7 +106,7 @@ if (editForm) {
   
   if (!id) {
     alert("No post ID found.");
-    window.location.href = "./index.html";
+    window.location.href = "/index.html";
   }
 
   const stored = localStorage.getItem("usbloggers_posts");
@@ -116,7 +116,7 @@ if (editForm) {
 
   if (!post) {
     alert("Post not found.");
-    window.location.href = "./index.html";
+    window.location.href = "/index.html";
   }
 
   // Pre-fill form
@@ -153,7 +153,7 @@ if (editForm) {
 
     if (!post) {
       alert("Post not found.");
-      window.location.href = "./index.html";
+      window.location.href = "/index.html";
     } else {
 //inputfelt
     document.getElementById("title").value = post.title || "";
