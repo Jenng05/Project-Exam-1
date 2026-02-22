@@ -61,5 +61,5 @@ form?.addEventListener("submit", (e) => {
 
   console.log("Updated post:", updated);
 
-  window.location.href = `./specific.html?id=${updated.id}`;
+  window.location.href = `../../src/specific.html?id=${updated.id}`;
 });

@@ -27,13 +27,13 @@ export function initNavGuard() {
     logoutLink.addEventListener("click", (e) => {
       e.preventDefault();
       logout();
-      window.location.href = "/index.html";
+      window.location.href = "../../index.html";
     });
   }
 }
 
 export function requireAuth() {
     if (!isLoggedIn()) {
-        window.location.href = "/src/login.html";
+        window.location.href = "../../src/login.html";
     }
 }

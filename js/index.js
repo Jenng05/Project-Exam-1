@@ -55,7 +55,7 @@ function renderPosts(posts) {
   posts.forEach((post) => {
     const a = document.createElement("a");
     a.className = "post-card";
-    a.href = `/src/specific.html?id=${post.id}`;
+    a.href = `./src/specific.html?id=${post.id}`;
 
     const img = document.createElement("img");
     img.src = post.image || "https://placehold.co/900x600";

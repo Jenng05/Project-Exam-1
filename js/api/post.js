@@ -54,14 +54,14 @@ if (!post) {
 
 const editLink = document.getElementById("edit-link");
 if (editLink && id) {
-  editLink.href = `./edit.html?id=${id}`;
+  editLink.href = `../../edit.html?id=${id}`;
 }
 }
 
 
 // ---------------- Create page ----------------
 if (isCreatePage) {
-  console.log("Create page loaded ✅");
+  console.log("Create page loaded");
 
   isCreatePage.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -90,7 +90,7 @@ if (isCreatePage) {
     posts.unshift(newPost);
     localStorage.setItem("usbloggers_posts", JSON.stringify(posts));
 
-    window.location.href = `./specific.html?id=${newPost.id}`;
+    window.location.href = `../../src/specific.html?id=${newPost.id}`;
   });
 }
 
@@ -116,7 +116,7 @@ if (editForm) {
 
   if (!post) {
     alert("Post not found.");
-    window.location.href = "/index.html";
+    window.location.href = "../../index.html";
   }
 
   // Pre-fill form
@@ -135,7 +135,7 @@ if (editForm) {
     localStorage.setItem("usbloggers_posts", JSON.stringify(posts));
     alert("Post updated!");
 
-    window.location.href = `./specific.html?id=${post.id}`;
+    window.location.href = `../../src/specific.html?id=${post.id}`;
   });
 
   const isEditPage = document.getElementById("edit-post-form");
@@ -153,7 +153,7 @@ if (editForm) {
 
     if (!post) {
       alert("Post not found.");
-      window.location.href = "/index.html";
+      window.location.href = "../../index.html";
     } else {
 //inputfelt
     document.getElementById("title").value = post.title || "";
@@ -182,7 +182,7 @@ if (editForm) {
 
       localStorage.setItem("usbloggers_posts", JSON.stringify(posts));
       alert("Post updated!");
-      window.location.href = `./specific.html?id=${id}`;
+      window.location.href = `../../src/specific.html?id=${id}`;
     });
 
 
@@ -199,7 +199,7 @@ if (editForm) {
     localStorage.setItem("usbloggers_posts", JSON.stringify(updatePosts));
 
     alert("Post deleted.");
-    window.location.href = "./index.html";
+    window.location.href = "../../index.html";
   });
 }
 }

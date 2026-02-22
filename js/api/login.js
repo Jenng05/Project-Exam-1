@@ -27,6 +27,6 @@ form?.addEventListener("submit", (e) => {
   setMessage("Logged in Redirecting...");
 
   setTimeout(() => {
-    window.location.href = "./index.html";
+    window.location.href = "../../index.html";
   }, 700);
 });
