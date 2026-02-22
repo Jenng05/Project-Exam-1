@@ -2,7 +2,7 @@ import { getAuth } from "./auth.js";
 
 const auth = getAuth();
 if (!auth) {
-  window.location.href = "./login.html";
+  window.location.href = "../src/login.html";
 }
 
 const params = new URLSearchParams(window.location.search);
@@ -61,5 +61,5 @@ form?.addEventListener("submit", (e) => {
 
   console.log("Updated post:", updated);
 
-  window.location.href = `../../src/specific.html?id=${updated.id}`;
+  window.location.href = `./specific.html?id=${updated.id}`;
 });
