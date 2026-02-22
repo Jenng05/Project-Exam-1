@@ -39,12 +39,16 @@
       <section class="carousel" aria-label="Featured blog posts">
         <div class="carousel-track" id="carousel-track">
           <div class="carousel-slide">
-            <img src="https://placehold.co/600x400" alt="Blog post image" />
+            <img
+              id="carousel-image"
+              src="https://placehold.co/600x400"
+              alt="Blog post image"
+            />
 
             <div class="carousel-content">
               <div class="carousel-panel">
-                <h3>Featured Blog Post</h3>
-                <p>Short previewed text</p>
+                <h3 id="carousel-title">Featured Blog Post</h3>
+                <p id="carousel-excerpt">Short previewed text</p>
                 <a
                   class="btn"
                   id="carousel-readmore"
@@ -55,6 +59,7 @@
             </div>
 
             <button
+              id="carousel-prev"
               type="button"
               class="carousel-btn carousel-btn--prev"
               aria-label="Previous post"
@@ -62,6 +67,7 @@
               ‹
             </button>
             <button
+              id="carousel-next"
               type="button"
               class="carousel-btn carousel-btn--next"
               aria-label="Next post"
@@ -108,10 +114,11 @@
         <p class="footer-copy">© 2026 Us Bloggers</p>
       </div>
     </footer>
-    <script src="../js/index.js"></script>
-    <script type="module">
-      import { initNavGuard } from "../js/api/guard.js";
-      initNavGuard();
-    </script>
+    <script type="module" src="../js/index.js"></script>
   </body>
 </html>
+
+<script type="module">
+  import { initNavGuard } from "../js/api/guard.js";
+  initNavGuard();
+</script>

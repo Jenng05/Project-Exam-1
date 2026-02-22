@@ -23,7 +23,7 @@ const titleInput = document.getElementById("title");
 const bodyInput = document.getElementById("body");
 const imageInput = document.getElementById("image");
 
-// Finn riktig post i localStorage
+// Finner post i localStorage
 const posts = getStoredPosts();
 const postIndex = posts.findIndex((p) => String(p.id) === String(id));
 

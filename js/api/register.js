@@ -31,12 +31,11 @@ form?.addEventListener("submit", (e) => {
     return;
   }
 
-  //  MIDLERIDIG REGISTER (fake)
   // Senere: kall API /auth/register
   const user = { email, name: email.split("@")[0] };
 
   saveAuth(user);
-  setMessage("Account created ✅ Redirecting...");
+  setMessage("Account created - Redirecting...");
 
   setTimeout(() => {
     window.location.href = "./index.html";

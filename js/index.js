@@ -1,35 +1,74 @@
-const STORAGE_KEY = "usbloggers_posts";
+import { POSTS_URL } from "./api/config.js";
+import { initNavGuard } from "./api/guard.js";
 
-function getStoredPosts() {
-  const stored = localStorage.getItem(STORAGE_KEY);
+initNavGuard();
+
+console.log("index.js loaded", POSTS_URL);
+
+async function getPosts() {
+  try {
+    const res = await fetch(POSTS_URL);
+    const json = await res.json();
+    console.log("POSTS FROM API ", json);
+
+    return json.data ?? [];
+  } catch (err) {
+    console.error("Failed to fetch posts", err);
+    return [];
+  }
+}
+
+getPosts();
+
+function getLocalPosts() {
+  const stored = localStorage.getItem("usbloggers_posts");
   return stored ? JSON.parse(stored) : [];
 }
 
-function renderPostGrid(posts) {
-  const postFeed = document.getElementById("post-feed");
-  if (!postFeed) return;
+const dummyPosts = [
+  {
+    id: "1",
+    title: "My first blog post",
+    image: "https://placehold.co/900x600",
+    body: "This is the content of post 1.",
+  },
+  {
+    id: "2",
+    title: "Learning frontend",
+    image: "https://placehold.co/900x600",
+    body: "This is the content of post 2.",
+  },
+  {
+    id: "3",
+    title: "Design tips",
+    image: "https://placehold.co/900x600",
+    body: "This is the content of post 3.",
+  },
+];
 
-  postFeed.innerHTML = "";
+function renderPosts(posts) {
+  const feed = document.getElementById("post-feed");
+  if (!feed) return;
 
-  if (posts.length === 0) {
-    postFeed.innerHTML = "<p>No posts yet. Be the first to create one!</p>";
-    return;
-  }
+  feed.innerHTML = "";
 
-  posts.forEach(post => {
-    const card = document.createElement("a");
-    card.className = "post-card";
-    card.href = `./specific.html?id=${post.id}`;
+  posts.forEach((post) => {
+    const a = document.createElement("a");
+    a.className = "post-card";
+    a.href = `./specific.html?id=${post.id}`;
 
-    card.innerHTML = `
-      <img src="${post.image}" alt="${post.title}">
-      <h4>${post.title}</h4>
-    `;
+    const img = document.createElement("img");
+    img.src = post.image || "https://placehold.co/900x600";
+    img.alt = post.title || "Blog post image";
 
-    postFeed.appendChild(card);
+    const h4 = document.createElement("h4");
+    h4.textContent = post.title || "Untitled";
+
+    a.append(img, h4);
+    feed.appendChild(a);
   });
 }
 
-const posts = getStoredPosts();
-renderPostGrid(posts);
 
+const all = [...getLocalPosts(), ...dummyPosts];
+renderPosts(all);

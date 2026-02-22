@@ -68,7 +68,9 @@
 
           <div class="form-actions">
             <button class="btn" type="submit">Update post</button>
-            <button class="btn btn-danger" type="button">Delete post</button>
+            <button class="btn btn-danger" id="delete-post" type="button">
+              Delete post
+            </button>
           </div>
         </form>
       </section>
@@ -96,7 +98,7 @@
       </div>
     </footer>
 
-    <script src="../js/post.js"></script>
+    <script type="module" src="../js/api/post.js"></script>
     <script type="module" src="../js/api/edit.js"></script>
     <script type="module">
       import { initNavGuard, requireAuth } from "../js/api/guard.js";
