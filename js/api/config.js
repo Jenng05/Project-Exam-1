@@ -1,4 +1,4 @@
-export const USERNAME = "jenny05";
+export const USERNAME = "jenngu0518";
 export const API_BASE_URL = "https://v2.api.noroff.dev";
 
 export const POSTS_URL = `${API_BASE_URL}/blog/posts/${USERNAME}`;
