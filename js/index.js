@@ -25,27 +25,6 @@ function getLocalPosts() {
   return stored ? JSON.parse(stored) : [];
 }
 
-const dummyPosts = [
-  {
-    id: "1",
-    title: "My first blog post",
-    image: "https://placehold.co/900x600",
-    body: "This is the content of post 1.",
-  },
-  {
-    id: "2",
-    title: "Learning frontend",
-    image: "https://placehold.co/900x600",
-    body: "This is the content of post 2.",
-  },
-  {
-    id: "3",
-    title: "Design tips",
-    image: "https://placehold.co/900x600",
-    body: "This is the content of post 3.",
-  },
-];
-
 function renderPosts(posts) {
   const feed = document.getElementById("post-feed");
   if (!feed) return;
@@ -70,5 +49,5 @@ function renderPosts(posts) {
 }
 
 
-const all = [...getLocalPosts(), ...dummyPosts];
-renderPosts(all);
+const posts = await getPosts();
+renderPosts(posts);

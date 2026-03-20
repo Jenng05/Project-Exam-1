@@ -9,7 +9,7 @@ function setMessage(text, type = "info") {
   msg.style.color = type === "error" ? "crimson" : "green";
 }
 
-form?.addEventListener("submit", (e) => {
+form?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const email = document.getElementById("email")?.value.trim();
@@ -20,13 +20,27 @@ form?.addEventListener("submit", (e) => {
     return;
   }
 
-  // bytte denne delen til API senere
-  const user = { email, name: email.split("@")[0] };
+  try {
+    const response = await fetch("https://v2.api.noroff.dev/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
 
-  saveAuth(user);
-  setMessage("Logged in Redirecting...");
+    const json = await response.json();
 
-  setTimeout(() => {
-    window.location.href = "../index.html";
-  }, 700);
+    if (!response.ok) {
+      setMessage(json.errors?.[0]?.message || "Login failed.", "error");
+      return;
+    }
+
+    saveAuth(json.data);
+    setMessage("Logged in! Redirecting...");
+    setTimeout(() => {
+      window.location.href = "../../index.html";
+    }, 700)
+
+  } catch (err) {
+    setMessage("Something went wrong. Try again.", "error");
+  }
 });

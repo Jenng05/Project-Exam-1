@@ -1,7 +1,7 @@
 import { saveAuth } from "./auth.js";
 
 const form = document.getElementById("register-form");
-const msg = document.getElementById("form-message");
+const msg = document.getElementById("register-message");
 
 function setMessage(text, type = "info") {
   if (!msg) return;
@@ -9,20 +9,21 @@ function setMessage(text, type = "info") {
   msg.style.color = type === "error" ? "crimson" : "green";
 }
 
-form?.addEventListener("submit", (e) => {
+form?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const email = document.getElementById("email")?.value.trim();
-  const password = document.getElementById("password")?.value;
-  const confirm = document.getElementById("confirm-password")?.value;
+  const name = document.getElementById("register-name")?.value.trim();
+  const email = document.getElementById("register-email")?.value.trim();
+  const password = document.getElementById("register-password")?.value;
+  const confirm = document.getElementById("register-confirm")?.value;
 
-  if (!email || !password || !confirm) {
+  if (!name ||!email || !password || !confirm) {
     setMessage("Please fill in all fields.", "error");
     return;
   }
 
-  if (password.length < 6) {
-    setMessage("Password must be at least 6 characters.", "error");
+  if (password.length < 8) {
+    setMessage("Password must be at least 8 characters.", "error");
     return;
   }
 
@@ -31,13 +32,26 @@ form?.addEventListener("submit", (e) => {
     return;
   }
 
-  // Senere: kall API /auth/register
-  const user = { email, name: email.split("@")[0] };
+  try {
+    const response = await fetch("https://v2.api.noroff.dev/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password }),
+    });
 
-  saveAuth(user);
-  setMessage("Account created - Redirecting...");
+    const json = await response.json();
 
-  setTimeout(() => {
-    window.location.href = "../index.html";
-  }, 700);
+    if (!response.ok) {
+      setMessage(json.errors?.[0]?.message || "Registration failed.", "error");
+      return;
+    }
+
+    setMessage("Account created! Redirecting to login...");
+    setTimeout(() => {
+      window.location.href = "./login.html";
+    }, 700);
+
+  } catch (err) {
+    setMessage("Something went wrong. Try again.", "error");
+  }
 });
