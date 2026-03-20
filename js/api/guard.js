@@ -34,6 +34,6 @@ export function initNavGuard() {
 
 export function requireAuth() {
     if (!isLoggedIn()) {
-        window.location.href = "../../src/login.html";
+        window.location.href = "../../account/login.html";
     }
 }

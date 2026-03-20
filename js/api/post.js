@@ -1,3 +1,6 @@
+import { getAuth } from "./auth.js";
+import { POSTS_URL } from "./config.js";
+
 const isSpecificPage = document.getElementById("post-title");
 const isCreatePage = document.getElementById("create-post-form");
 
@@ -63,7 +66,7 @@ if (editLink && id) {
 if (isCreatePage) {
   console.log("Create page loaded");
 
-  isCreatePage.addEventListener("submit", (e) => {
+  isCreatePage.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const title = document.getElementById("title")?.value.trim();
@@ -87,11 +90,26 @@ if (isCreatePage) {
       date: new Date().toISOString().slice(0, 10),
     };
 
-    posts.unshift(newPost);
-    localStorage.setItem("usbloggers_posts", JSON.stringify(posts));
+    const auth = getAuth();
 
-    window.location.href = `../../src/specific.html?id=${newPost.id}`;
-  });
+    const response = await fetch(POSTS_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${auth.accessToken}`,
+      },
+      body: JSON.stringify({ title, body, media: { url: image, alt: title } }),
+    });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      alert(json.errors?.[0]?.message || "Could not create post.");
+      return;
+    }
+
+    window.location.href = `../../post/index.html?id=${json.data.id}`;
+      });
 }
 
 // ------------Edit Page ----------------
@@ -135,7 +153,7 @@ if (editForm) {
     localStorage.setItem("usbloggers_posts", JSON.stringify(posts));
     alert("Post updated!");
 
-    window.location.href = `../../src/specific.html?id=${post.id}`;
+    window.location.href = `../../post/index.html?id=${post.id}`;
   });
 
   const isEditPage = document.getElementById("edit-post-form");
@@ -182,7 +200,7 @@ if (editForm) {
 
       localStorage.setItem("usbloggers_posts", JSON.stringify(posts));
       alert("Post updated!");
-      window.location.href = `../../src/specific.html?id=${id}`;
+      window.location.href = `../../post/index.html?id=${id}`;
     });
 
 
