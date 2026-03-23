@@ -51,6 +51,8 @@ function renderPosts(posts) {
 
 const posts = await getPosts();
 renderPosts(posts);
+initCarousel(posts);
+
 
 const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
@@ -58,3 +60,29 @@ const mainNav = document.querySelector(".main-nav");
 menuToggle?.addEventListener("click", () => {
   mainNav.classList.toggle("is-open");
 });
+
+function initCarousel(posts) {
+  const slides = posts.slice(0, 3);
+  let current = 0;
+
+  function showSlide(index) {
+  const post = slides[index];
+  
+  document.getElementById("carousel-image").src = post.media?.url || "https://placehold.co/600x400";
+  document.getElementById("carousel-title").textContent = post.title || "Untitled";
+  document.getElementById("carousel-excerpt").textContent = post.body?.slice(0, 100) + "..." || "";
+  document.getElementById("carousel-readmore").href = `./post/index.html?id=${post.id}`;
+}
+
+showSlide(current);
+
+document.getElementById("carousel-next").addEventListener("click", () => {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+});
+
+document.getElementById("carousel-prev").addEventListener("click", () => {
+  current = (current - 1 + slides.length) % slides.length;
+  showSlide(current);
+});
+}
