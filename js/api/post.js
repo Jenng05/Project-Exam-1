@@ -117,91 +117,86 @@ if (isCreatePage) {
 const editForm = document.getElementById("edit-post-form");
 
 if (editForm) {
-  console.log("Edit page loaded");
-
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
-  
+
   if (!id) {
     alert("No post ID found.");
-    window.location.href = "/index.html";
-  }
-
-  const stored = localStorage.getItem("usbloggers_posts");
-  const posts = stored ? JSON.parse(stored) : [];
-
-  const post = posts.find((p) => String(p.id) === String(id));
-
-  if (!post) {
-    alert("Post not found.");
     window.location.href = "../../index.html";
   }
 
-  // Pre-fill form
-  document.getElementById("title").value = post.title || "";
-  document.getElementById("body").value = post.body || "";
-  document.getElementById("image").value = post.image || "";
+  // Hent eksisterende post og fyll inn skjemaet
+  async function loadPost() {
+    const auth = getAuth();
+    const res = await fetch(`${POSTS_URL}/${id}`, {
+      headers: {
+        "Authorization": `Bearer ${auth.accessToken}`,
+      },
+    });
+    const json = await res.json();
+    const post = json.data;
 
-  // update post
-  editForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    post.title = document.getElementById("title").value.trim();
-    post.body = document.getElementById("body").value.trim();
-    post.image = document.getElementById("image").value.trim() || "https://placehold.co/900x600";
-
-    localStorage.setItem("usbloggers_posts", JSON.stringify(posts));
-    alert("Post updated!");
-
-    window.location.href = `../../post/index.html?id=${post.id}`;
-  });
-
-  const isEditPage = document.getElementById("edit-post-form");
-
-  if (isEditPage) {
-    console.log("Edit page loaded");
-
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-
-    const stored = localStorage.getItem("usbloggers_posts");
-    const posts = stored ? JSON.parse(stored) : [];
-
-    const post = posts.find((p) => String(p.id) === String(id));
-
-    if (!post) {
-      alert("Post not found.");
-      window.location.href = "../../index.html";
-    } else {
-//inputfelt
     document.getElementById("title").value = post.title || "";
     document.getElementById("body").value = post.body || "";
-    document.getElementById("image").value = post.image || "";
-
+    document.getElementById("image").value = post.media?.url || "";
   }
 
-  isEditPage.addEventListener("submit", (e) => {
+  loadPost();
+
+  // Oppdater post
+  editForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
+    const auth = getAuth();
+    const title = document.getElementById("title").value.trim();
+    const body = document.getElementById("body").value.trim();
+    const image = document.getElementById("image").value.trim();
 
-    const stored = localStorage.getItem("usbloggers_posts");
-    const posts = stored ? JSON.parse(stored) : [];
-
-    const index = posts.findIndex((p) => String(p.id) === String(id));
-    if (index === -1) {
-      alert("Post not found.");
-        return;
-    }
-      posts[index].title = document.getElementById("title").value;
-      posts[index].body = document.getElementById("body").value;
-      posts[index].image = document.getElementById("image").value;
-
-      localStorage.setItem("usbloggers_posts", JSON.stringify(posts));
-      alert("Post updated!");
-      window.location.href = `../../post/index.html?id=${id}`;
+    const response = await fetch(`${POSTS_URL}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${auth.accessToken}`,
+      },
+      body: JSON.stringify({ title, body, media: { url: image, alt: title } }),
     });
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      alert(json.errors?.[0]?.message || "Could not update post.");
+      return;
+      
+    }
+
+    window.location.href = `../../post/index.html?id=${id}`;
+  });
+
+  // Slett post
+  const deleteBtn = document.getElementById("delete-post");
+  deleteBtn?.addEventListener("click", async () => {
+    const confirmDelete = confirm("Are you sure you want to delete this post?");
+    if (!confirmDelete) return;
+
+    const auth = getAuth();
+    const response = await fetch(`${POSTS_URL}/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${auth.accessToken}`,
+      },
+    });
+
+    if (response.ok) {
+      alert("Post deleted!");
+      window.location.href = "../../index.html";
+    } else {
+      alert("Could not delete post.");
+    }
+  });
+
+  
+
+}
 
 
   // -------------Delete Post----------------
@@ -219,5 +214,4 @@ if (editForm) {
     alert("Post deleted.");
     window.location.href = "../../index.html";
   });
-}
-}
+

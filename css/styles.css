@@ -91,6 +91,13 @@ h1, h2, h3, h4{
   display: none;
 }
 
+.main-nav.is-open {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
 /*----Back link----*/
 .back-link {
   display: inline-block;
@@ -379,6 +386,12 @@ h1, h2, h3, h4{
   color: var(--color-muted);
   font-style: italic;
 }
+
+.post-card {
+  text-decoration: none;
+  color: black;
+}
+
 
 .post-media {
   position: relative;

@@ -2,7 +2,7 @@ import { getAuth } from "./auth.js";
 
 const auth = getAuth();
 if (!auth) {
-  window.location.href = "../src/login.html";
+  window.location.href = "../../account/login.html";
 }
 
 const params = new URLSearchParams(window.location.search);

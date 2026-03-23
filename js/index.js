@@ -34,10 +34,10 @@ function renderPosts(posts) {
   posts.forEach((post) => {
     const a = document.createElement("a");
     a.className = "post-card";
-    a.href = `./src/specific.html?id=${post.id}`;
+    a.href = `../../post/index.html?id=${post.id}`;
 
     const img = document.createElement("img");
-    img.src = post.image || "https://placehold.co/900x600";
+    img.src = post.media?.url || "https://placehold.co/900x600";
     img.alt = post.title || "Blog post image";
 
     const h4 = document.createElement("h4");
@@ -51,3 +51,10 @@ function renderPosts(posts) {
 
 const posts = await getPosts();
 renderPosts(posts);
+
+const menuToggle = document.querySelector(".menu-toggle");
+const mainNav = document.querySelector(".main-nav");
+
+menuToggle?.addEventListener("click", () => {
+  mainNav.classList.toggle("is-open");
+});

@@ -52,6 +52,11 @@ async function loadSpecific() {
     console.error("Failed to load post:", err);
     if (titleEl) titleEl.textContent = "Post not found";
   }
+
+  const editLink = document.getElementById("edit-link");
+if (editLink && id) {
+  editLink.href = `./edit.html?id=${id}`;
+}
 }
 
 loadSpecific();
